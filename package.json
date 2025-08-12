@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "dev": "vite dev --host",
+    "check": "npx depcheck",
+    "preview": "vite preview",
+    "build:test": "vite build --mode test",
+    "build:prod": "vite build --mode production"
   },
   "dependencies": {
     "@phosphor-icons/vue": "^2.2.1",
