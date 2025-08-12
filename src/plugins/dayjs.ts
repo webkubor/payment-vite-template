@@ -1,0 +1,13 @@
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import duration from "dayjs/plugin/duration";
+import utc from "dayjs/plugin/utc";
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import timezone from 'dayjs/plugin/timezone';
+import 'dayjs/locale/zh-cn';
+dayjs.extend(duration);
+dayjs.extend(localizedFormat);
+dayjs.extend(timezone);
+dayjs.extend(relativeTime);
+dayjs.extend(utc);
+export default dayjs;

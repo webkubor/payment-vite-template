@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import i18n from './i18n'
 import dayjs from 'dayjs'
+import { useMessagePlugin } from "@/plugins/message";
 import 'dayjs/locale/zh-cn'
 
 // 导入全局样式
@@ -12,9 +14,7 @@ dayjs.locale('zh-cn')
 
 // 创建应用实例
 const app = createApp(App)
-
-// 使用路由
 app.use(router)
-
-// 挂载应用
+app.use(i18n)
+app.use(useMessagePlugin)
 app.mount('#app')
