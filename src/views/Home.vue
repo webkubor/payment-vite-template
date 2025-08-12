@@ -1,13 +1,44 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { PhCaretRight, PhTranslate } from '@phosphor-icons/vue'
+import { PhCaretRight, PhTranslate, PhCalendar, PhBell } from '@phosphor-icons/vue'
+import { message } from '../plugins/message'
+import dayjs from '../plugins/dayjs'
 
 // 使用 i18n 组合式 API
 const { t, locale } = useI18n()
 
+// 当前时间相关变量
+const currentTime = ref(dayjs().format('YYYY-MM-DD HH:mm:ss'))
+const relativeTime = ref(dayjs().fromNow())
+
+// 每秒更新时间
+setInterval(() => {
+  currentTime.value = dayjs().format('YYYY-MM-DD HH:mm:ss')
+  relativeTime.value = dayjs().fromNow()
+}, 1000)
+
 // 切换语言方法
 const toggleLanguage = () => {
   locale.value = locale.value === 'zh-CN' ? 'en-US' : 'zh-CN'
+  message.success(t('common.languageChanged'))
+}
+
+// 消息提示测试
+const showSuccessMessage = () => {
+  message.success(t('demo.successMessage'))
+}
+
+const showInfoMessage = () => {
+  message.info(t('demo.infoMessage'))
+}
+
+const showWarningMessage = () => {
+  message.warning(t('demo.warningMessage'))
+}
+
+const showErrorMessage = () => {
+  message.error(t('demo.errorMessage'))
 }
 </script>
 
@@ -54,15 +85,59 @@ const toggleLanguage = () => {
     </div>
     
     <div class="demo-section">
-      <h3>功能演示</h3>
-      <div class="icon-demo">
-        <PhCaretRight :size="32" weight="bold" />
-        <span>{{ t('home.iconDemo') }}</span>
+      <h3>{{ t('home.demoTitle') }}</h3>
+      
+      <!-- 图标演示 -->
+      <div class="demo-card">
+        <h4>{{ t('demo.iconTitle') }}</h4>
+        <div class="icon-demo">
+          <PhCaretRight :size="32" weight="bold" />
+          <PhTranslate :size="32" weight="bold" />
+          <PhCalendar :size="32" weight="bold" />
+          <PhBell :size="32" weight="bold" />
+        </div>
       </div>
       
-      <div class="language-switcher" @click="toggleLanguage">
-        <PhTranslate :size="24" weight="bold" />
-        <span>{{ locale === 'zh-CN' ? 'English' : '中文' }}</span>
+      <!-- 时间显示演示 -->
+      <div class="demo-card">
+        <h4>{{ t('demo.timeTitle') }}</h4>
+        <div class="time-demo">
+          <div class="time-item">
+            <PhCalendar :size="20" weight="bold" />
+            <span>{{ currentTime }}</span>
+          </div>
+          <div class="time-item">
+            <span>{{ t('demo.relativeTime') }}: {{ relativeTime }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 消息提示演示 -->
+      <div class="demo-card">
+        <h4>{{ t('demo.messageTitle') }}</h4>
+        <div class="message-demo">
+          <button class="message-btn success" @click="showSuccessMessage">
+            {{ t('demo.success') }}
+          </button>
+          <button class="message-btn info" @click="showInfoMessage">
+            {{ t('demo.info') }}
+          </button>
+          <button class="message-btn warning" @click="showWarningMessage">
+            {{ t('demo.warning') }}
+          </button>
+          <button class="message-btn error" @click="showErrorMessage">
+            {{ t('demo.error') }}
+          </button>
+        </div>
+      </div>
+      
+      <!-- 语言切换演示 -->
+      <div class="demo-card">
+        <h4>{{ t('demo.i18nTitle') }}</h4>
+        <div class="language-switcher" @click="toggleLanguage">
+          <PhTranslate :size="24" weight="bold" />
+          <span>{{ locale === 'zh-CN' ? 'English' : '中文' }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -94,6 +169,12 @@ const toggleLanguage = () => {
     font-size: 1.3rem;
   }
   
+  h4 {
+    color: color.adjust($primary-color, $lightness: -10%);
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+  }
+  
   .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -121,7 +202,7 @@ const toggleLanguage = () => {
           position: relative;
           
           &::before {
-            content: '•';
+            content: '\2022';
             color: $primary-color;
             font-weight: bold;
             position: absolute;
@@ -138,15 +219,77 @@ const toggleLanguage = () => {
     padding: 2rem;
     margin-top: 2rem;
     
+    .demo-card {
+      border-radius: $border-radius-sm;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
     .icon-demo {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
+      gap: 1.5rem;
+      margin-bottom: 0.5rem;
       
       span {
         font-size: 1.2rem;
+      }
+    }
+    
+    .time-demo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      
+      .time-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1rem;
+      }
+    }
+    
+    .message-demo {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+      
+      .message-btn {
+        padding: 0.5rem 1rem;
+        border-radius: $border-radius-sm;
+        border: none;
+        cursor: pointer;
+        transition: all $transition-duration ease;
+        font-weight: 500;
+        color: white;
+        
+        &.success {
+          background-color: #4CAF50;
+          &:hover { background-color: color.adjust(#4CAF50, $lightness: -10%); }
+        }
+        
+        &.info {
+          background-color: #2196F3;
+          &:hover { background-color: color.adjust(#2196F3, $lightness: -10%); }
+        }
+        
+        &.warning {
+          background-color: #FF9800;
+          &:hover { background-color: color.adjust(#FF9800, $lightness: -10%); }
+        }
+        
+        &.error {
+          background-color: #F44336;
+          &:hover { background-color: color.adjust(#F44336, $lightness: -10%); }
+        }
       }
     }
     
@@ -196,6 +339,11 @@ const toggleLanguage = () => {
     .demo-section {
       padding: 1.5rem;
     }
+    
+    .message-demo {
+      flex-direction: column;
+      align-items: stretch;
+    }
   }
 }
 
@@ -224,6 +372,14 @@ const toggleLanguage = () => {
     
     .demo-section {
       padding: 1rem;
+      
+      .demo-card {
+        padding: 1rem;
+      }
+      
+      .icon-demo {
+        gap: 1rem;
+      }
     }
   }
 }
