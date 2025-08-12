@@ -173,8 +173,57 @@ const toggleLanguage = () => {
 
 @media (max-width: 768px) {
   .home {
+    padding: 1.5rem 1rem;
+    
+    h1 {
+      font-size: 1.8rem;
+    }
+    
+    h2 {
+      font-size: 1.4rem;
+    }
+    
+    h3 {
+      font-size: 1.2rem;
+    }
+    
     .features {
       grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .demo-section {
+      padding: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    padding: 1rem 0.5rem;
+    
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+    }
+    
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .features {
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+      
+      .feature-card {
+        padding: 1rem;
+      }
+    }
+    
+    .demo-section {
+      padding: 1rem;
     }
   }
 }
