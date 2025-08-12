@@ -136,7 +136,7 @@ const showErrorMessage = () => {
         <h4>{{ t('demo.i18nTitle') }}</h4>
         <div class="language-switcher" @click="toggleLanguage">
           <PhTranslate :size="24" weight="bold" />
-          <span>{{ locale === 'zh-CN' ? 'English' : '中文' }}</span>
+          <span>{{ locale === 'zh-CN' ? 'English' : '韩语' }}</span>
         </div>
       </div>
     </div>
