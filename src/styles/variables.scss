@@ -1,34 +1,34 @@
-// 颜色变量
-$primary-color: #42b883;
-$secondary-color: #35495e;
-$background-color: #f5f5f5;
-$text-color: #333;
-$light-text-color: #666;
-$border-color: #e0e0e0;
+// 韩国风格主题色变量
+$primary-color: #003478; // 韩国国旗蓝色
+$primary-light: #1a4d8c; // 浅蓝色
+$primary-dark: #00275a; // 深蓝色
 
-// 间距变量
-$spacing-xs: 0.25rem;
-$spacing-sm: 0.5rem;
-$spacing-md: 1rem;
-$spacing-lg: 1.5rem;
-$spacing-xl: 2rem;
+$secondary-color: #C60C30; // 韩国国旗红色
+$secondary-light: #e62b4f; // 浅红色
+$secondary-dark: #a00926; // 深红色
 
-// 字体变量
-$font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-$font-size-xs: 0.75rem;
-$font-size-sm: 0.875rem;
-$font-size-md: 1rem;
-$font-size-lg: 1.25rem;
-$font-size-xl: 1.5rem;
+// 功能色
+$success-color: #0ca678; // 成功色
+$warning-color: #f59f00; // 警告色
+$error-color: #e03131; // 错误色
+$info-color: #1c7ed6; // 信息色
 
-// 边框圆角
-$border-radius-sm: 0.25rem;
-$border-radius-md: 0.5rem;
-$border-radius-lg: 1rem;
+// 中性色
+$neutral-100: #ffffff; // 纯白
+$neutral-200: #f8f9fa; // 背景色
+$neutral-300: #e9ecef; // 浅灰色
+$neutral-400: #dee2e6; // 边框色
+$neutral-500: #adb5bd; // 浅文本色
+$neutral-600: #6c757d; // 次要文本色
+$neutral-700: #495057; // 主要文本色
+$neutral-800: #343a40; // 深色文本
+$neutral-900: #212529; // 最深文本色
 
-// 阴影
-$box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-$box-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
-
-// 过渡
-$transition-duration: 0.3s;
+// 应用色变量
+$background-color: $neutral-200;
+$text-color: $neutral-800;
+$text-secondary: $neutral-600;
+$light-text-color: $neutral-600;
+$border-color: $neutral-400;
+$bg-light: $neutral-200;
+$bg-white: $neutral-100;

@@ -1,29 +1,36 @@
 // 变量已在 vite.config.ts 中全局导入，此处无需再次导入
 @use "sass:color";
+*{
+  margin: 0;
+  padding: 0;
+}
 
-// 全局基础样式
+// 全局基础样式 - 韩国收银台风格
 :root {
-  font-family: $font-family;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: $text-color;
+  background-color: $neutral-200;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  // 移动端适配
+  font-size: 14px;
 }
 
 a {
   font-weight: 500;
   color: $primary-color;
   text-decoration: inherit;
+  transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   
   &:hover {
-    color: color.adjust($primary-color, $lightness: -10%);
+    color: $primary-light;
   }
 }
 
@@ -32,58 +39,222 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
+  color: $text-color;
+  background-color: $neutral-200;
 }
 
-h1 {
-  font-size: $font-size-xl * 2;
-  line-height: 1.1;
-  color: $primary-color;
+.currency {
+  font-family: monospace;
+  font-weight: 800;
 }
 
 button {
-  border-radius: $border-radius-sm;
+  border-radius: 0.5rem;
   border: 1px solid transparent;
-  padding: $spacing-sm $spacing-md;
-  font-size: $font-size-md;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: $primary-color;
+  color: $neutral-100;
   cursor: pointer;
-  transition: border-color $transition-duration;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   
   &:hover {
-    border-color: $primary-color;
+    background-color: $primary-light;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   }
   
   &:focus,
   &:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
+    outline: 3px solid rgba($primary-color, 0.25);
+    outline-offset: 1px;
+  }
+  
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  &.secondary {
+    background-color: $secondary-color;
+    
+    &:hover {
+      background-color: $secondary-light;
+    }
+    
+    &:focus,
+    &:focus-visible {
+      outline: 3px solid rgba($secondary-color, 0.25);
+    }
+  }
+  
+  &.outline {
+    background-color: transparent;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    
+    &:hover {
+      background-color: rgba($primary-color, 0.05);
+    }
+  }
+  
+  &.text {
+    background-color: transparent;
+    border: none;
+    color: $primary-color;
+    padding: 0.25rem 0.5rem;
+    box-shadow: none;
+    
+    &:hover {
+      background-color: rgba($primary-color, 0.05);
+      box-shadow: none;
+    }
+    
+    &:active {
+      transform: none;
+    }
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+    
+    &:hover {
+      background-color: $primary-color;
+      box-shadow: none;
+    }
+    
+    &:active {
+      transform: none;
+    }
   }
 }
 
 #app {
   width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: $spacing-lg;
   box-sizing: border-box;
+}
+
+// 添加常用工具类
+.container {
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1140px;
   
-  @media (max-width: 768px) {
-    padding: $spacing-md;
-  }
-  
-  @media (max-width: 480px) {
-    padding: $spacing-sm;
+  @media (max-width: 992px) {
+    max-width: 960px;
   }
 }
+
+// 卡片组件样式
+.card {
+  background-color: $neutral-100;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.25s, box-shadow 0.25s;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// 表单元素样式
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: $text-color;
+  background-color: $neutral-100;
+  background-clip: padding-box;
+  border: 1px solid $border-color;
+  border-radius: 0.5rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  
+  &:focus {
+    border-color: $primary-light;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba($primary-color, 0.25);
+  }
+}
+
+// 弹性布局
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+// 文本工具类
+.text-primary { color: $primary-color; }
+.text-secondary { color: $secondary-color; }
+.text-success { color: $success-color; }
+.text-warning { color: $warning-color; }
+.text-error { color: $error-color; }
+.text-info { color: $info-color; }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-sm { font-size: 0.875rem; }
+.text-md { font-size: 1rem; }
+.text-lg { font-size: 2.625rem; }
+.text-xl { font-size: 2.25rem; }
+
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-normal { font-weight: 400; }
+.font-light { font-weight: 300; }
+
+// 响应式工具类
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
 
 @media (prefers-color-scheme: light) {
   :root {
     color: $text-color;
-    background-color: #ffffff;
-  }
-  
-  button {
-    background-color: #f9f9f9;
+    background-color: $neutral-200;
   }
 }

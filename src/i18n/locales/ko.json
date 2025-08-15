@@ -1,0 +1,46 @@
+{
+  "common": {
+    "languageChanged": "언어가 변경되었습니다",
+    "copySuccess": "복사 성공",
+    "copy": "복사"
+  },
+  "payment": {
+    "title": "결제 정보",
+    "paymentTimeLimit": "결제 시간 제한",
+    "timeLimit": "결제 시간 제한",
+    "paymentAmount": "결제 금액",
+    "accountNumber": "계좌 번호",
+    "bankName": "은행명",
+    "accountName": "예금주",
+    "accountHolder": "예금주",
+    "accountUpdateWarning": "계좌 정보가 업데이트될 수 있으니 결제 전에 확인해 주세요",
+    "doNotChangeAmount": "금액을 변경하지 마세요",
+    "iHavePaid": "결제를 완료했습니다",
+    "checkStatus": "결제 상태 확인",
+    "checkStatusMobile": "상태 확인",
+    "copySuccess": "복사되었습니다"
+  },
+  "error": {
+    "paymentLinkError": "결제 링크 오류",
+    "waitForRetry": "{0}초 후 상점에서 주문을 다시 가져오십시오"
+  },
+  "result": {
+    "orderNumber": "상점 주문 번호",
+    "amount": "결제 금액",
+    "paymentTime": "결제 시간",
+    "orderNotFound": "주문을 찾을 수 없습니다",
+    "orderNumberCopied": "주문 번호가 클립보드에 복사되었습니다",
+    "amountCopied": "금액이 클립보드에 복사되었습니다",
+    "paymentSuccess": "결제 성공",
+    "paymentSuccessDesc": "결제가 성공적으로 처리되었습니다. 거래해 주셔서 감사합니다.",
+    "paymentTimeout": "결제 시간 초과",
+    "paymentTimeoutDesc": "결제 시간이 초과되었습니다. 다시 시도하거나 고객 지원에 문의하세요.",
+    "paymentFailed": "결제 실패",
+    "paymentFailedDesc": "결제를 처리할 수 없습니다. 정보를 확인하고 다시 시도하세요.",
+    "paymentProcessing": "결제 처리중",
+    "paymentProcessingDesc": "결제가 처리중입니다. 잠시만 기다려 주세요.",
+    "backToHome": "상점으로 돌아가기",
+    "backToPayment": "결제 페이지로 돌아가기",
+    "tryAgain": "다시 시도"
+  }
+}

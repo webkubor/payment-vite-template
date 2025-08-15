@@ -1,6 +1,6 @@
 import fly from "flyio";
 import { getBaseApiUrl } from "./url";
-import { getLocalLang } from "@/plugins/i18n/config";
+import { getLocalLang } from "@/i18n/config";
 
 fly.config.baseURL = getBaseApiUrl()
 

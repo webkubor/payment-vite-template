@@ -16,6 +16,15 @@ export const langList = [
   { label: "Korean", code: "ko", value: "ko-KR", countryCode: "kr" },
 ];
 
+// 实际注册到 i18n 的受支持语言白名单（必须与 src/i18n/index.ts 中 messages 的 key 保持一致）
+const supportedLocales = ["en-US", "ko-KR"] as const;
+type SupportedLocale = typeof supportedLocales[number];
+
+// 类型守卫：判断传入字符串是否为受支持的语言
+function isSupportedLocale(x: string): x is SupportedLocale {
+  return (supportedLocales as readonly string[]).includes(x);
+}
+
 /**
  * 获取语言选项
  * @param {string} defaultCode 默认语言代码，默认值为 'en'
@@ -38,13 +47,15 @@ export function getLocalLang(): string {
   try {
     const langSet = getParamFromUrlOrHash('followBrowser');
     if (langSet) {
-      return getBrowserLang();
+      const browserLocale = getBrowserLang();
+      return isSupportedLocale(browserLocale) ? browserLocale : "en-US";
     } else {
       let country = getCountryFromUrl();
       const matchedLang = langList.find(item => item.countryCode === country);
       if (matchedLang) {
-        console.log('Using local language setting', matchedLang.value);
-        return matchedLang.value;
+        const candidate = matchedLang.value as string;
+        console.log('Using local language setting', candidate);
+        return isSupportedLocale(candidate) ? candidate : "en-US";
       } else {
         console.log('No matching language found for country', country, 'using default en-US');
         return "en-US";
@@ -62,7 +73,7 @@ export function getTargetLang(): string {
    const langParam = getParamFromUrlOrHash('lang');
     
    // 如果 URL 中有 lang 参数且它在支持的语言列表中，直接返回该值
-   if (langParam && Object.keys(localesConfigs).includes(langParam)) {
+   if (langParam && isSupportedLocale(langParam)) {
      console.log('getLocalLang from URL', langParam);
      return langParam;
    }
@@ -72,22 +83,9 @@ export function getTargetLang(): string {
 }
 
 export function getBrowserLang(): string {
-  // 如果URL中没有lang参数，使用浏览器语言
-  const browserLang = navigator.language || "en"; // 默认值
-     
-  // 将浏览器语言转换为小写（处理浏览器返回的格式如 "en-US" 或 "en"）
-  const lang = browserLang.toLowerCase();
- 
-  // 处理不同格式的浏览器语言，提取国家或地区代码
-  const languageCode = lang.includes("-") ? lang.split("-")[0] : lang;
- 
-  const matchedLang = langList.find(item => item.code === languageCode);
-  let country = getCountryFromUrl();
-  let supportLanguageArr = [country, 'us'];
-  if (matchedLang && supportLanguageArr.includes(matchedLang.countryCode)) {
-    console.log('getLocalLang from browser', supportLanguageArr, matchedLang);
-    return matchedLang.value; // 返回如 "en-US"
-  } else {
-    return "en-US"; // 如果没有匹配到，则返回默认语言
-  }
+  // 仅根据浏览器语言在受支持白名单内选择，默认回退 en-US
+  const browserLang = (navigator.language || "en-US").toLowerCase();
+  const code = browserLang.includes('-') ? browserLang.split('-')[0] : browserLang;
+  const candidate = (code === 'ko' ? 'ko-KR' : 'en-US') as string;
+  return isSupportedLocale(candidate) ? candidate : 'en-US';
  }

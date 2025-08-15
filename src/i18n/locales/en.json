@@ -1,0 +1,46 @@
+{
+  "common": {
+    "languageChanged": "Language Changed",
+    "copySuccess": "Copied successfully",
+    "copy": "Copy"
+  },
+  "payment": {
+    "title": "Payment Information",
+    "paymentTimeLimit": "Payment Time Limit",
+    "timeLimit": "Payment Time Limit",
+    "paymentAmount": "Payment Amount",
+    "accountNumber": "Account Number",
+    "accountUpdateWarning": "The transfer account changes each time. Please use the latest account for every transaction.",
+    "bankName": "Bank Name",
+    "accountName": "Account Name",
+    "accountHolder": "Account Holder",
+    "iHavePaid": "I have completed the payment",
+    "checkStatus": "Check payment status",
+    "checkStatusMobile": "Check Status",
+    "doNotChangeAmount": "Please do not change the amount",
+    "copySuccess": "Copied successfully"
+  },
+  "error": {
+    "paymentLinkError": "Payment link error",
+    "waitForRetry": "Please wait {0} seconds to fetch the order from merchant again"
+  },
+  "result": {
+    "orderNumber": "Merchant Order Number",
+    "amount": "Payment Amount",
+    "paymentTime": "Payment Time",
+    "orderNotFound": "Order not found",
+    "orderNumberCopied": "Order number copied to clipboard",
+    "amountCopied": "Amount copied to clipboard",
+    "paymentSuccess": "Payment Successful",
+    "paymentSuccessDesc": "Your payment has been processed successfully. Thank you for your transaction.",
+    "paymentTimeout": "Payment Timeout",
+    "paymentTimeoutDesc": "Your payment has timed out. Please try again or contact customer support.",
+    "paymentFailed": "Payment Failed",
+    "paymentFailedDesc": "We couldn't process your payment. Please check your information and try again.",
+    "paymentProcessing": "Payment Processing",
+    "paymentProcessingDesc": "Your payment is being processed. Please wait a moment.",
+    "backToHome": "Back to Merchant",
+    "backToPayment": "Back to Payment",
+    "tryAgain": "Try Again"
+  }
+}

@@ -1,7 +1,3 @@
-<script setup lang="ts">
-// App.vue - 应用入口组件
-</script>
-
 <template>
   <div class="app-container">
     <router-view />
@@ -11,9 +7,11 @@
 <style lang="scss">
 // 应用容器样式
 .app-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: $spacing-xl;
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  
 }
 </style>

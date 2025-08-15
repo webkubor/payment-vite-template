@@ -13,9 +13,6 @@ export function getExpireSeconds(targetTime: number) {
   return diffInSeconds
 }
 
-
-
-
 /**
  * 将给定的输入转换为 dayjs 时间戳。
  * 如果输入是数字，则假定它是 Unix 时间戳（秒或毫秒），并相应地进行转换。
@@ -24,7 +21,7 @@ export function getExpireSeconds(targetTime: number) {
  * @param {string | number} input - 要转换的输入，可以是日期字符串或 Unix 时间戳。
  * @return {dayjs.Dayjs} - 转换后的 dayjs 对象。
  */
-export function convertToTimestamp(input) {
+export function convertToTimestamp(input: string | number) {
   const isUnixTimestamp = /^[0-9]+$/.test(input); // 判断是否为数字形式的时间戳
 
   if (isUnixTimestamp) {
@@ -49,7 +46,7 @@ export function convertToTimestamp(input) {
  * @param {string} format - 格式化字符串，例如 "YYYY-MM-DD HH:mm:ss"
  * @returns {string} 格式化后的当地时间
  */
-export function getFormattedLocalTime(timeZone, timestamp, format = 'YYYY-MM-DD HH:mm:ss') {
+export function getFormattedLocalTime(timeZone: string, timestamp: number | string | Date, format: string = 'YYYY-MM-DD HH:mm:ss') {
   if (!timeZone || !timestamp) {
       return '-'
   }
